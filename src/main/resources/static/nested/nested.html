@@ -1,0 +1,68 @@
+<script type="text/ng-template" id="list.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-effect-allowed="move"
+            dnd-moved="list.splice($index, 1)"
+            dnd-selected="models.selected = item"
+            ng-class="{selected: models.selected === item}"
+            ng-include="item.type + '.html'">
+        </li>
+    </ul>
+</script>
+
+<script type="text/ng-template" id="item.html">
+    <div class="item">{{item.name}}</div>
+</script>
+<div class="col-md-10">
+    <div class="row">
+        <div class="col-md-4">
+             <div class="toolbox box box-grey box-padding">
+        <h3>Select Steps</h3>
+        <ul>
+           <li ng-repeat="item in models.templates"
+                dnd-draggable="item"
+                dnd-effect-allowed="copy"
+                dnd-copied="item.id = item.id + 1"
+                >
+                <button type="button" class="btn btn-default btn-lg" disabled="disabled">{{item.name}}</button>
+            </li>
+        </ul>
+    </div>
+        </div>
+         <div ng-repeat="(zone, list) in models.dropzones" class="col-md-4">
+            <div class="dropzone box box-yellow">
+            	<h3>Steps Selected</h3>
+                <div ng-include="'list.html'"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+  		<div ng-if="models.selected" class="box box-grey box-padding">
+        	<h3>{{models.selected.name}}</h3>
+       		<strong>Step Name </strong> {{models.selected.name}}
+        	<input type="text" ng-model="models.selected.name" class="form-control" style="margin-top: 5px" />
+        
+       	    <strong>Query </strong>
+            <input type="text"  class="form-control" style="margin-top: 5px" />
+
+        	<strong>Query Parameters </strong> 
+        	<input type="text"  class="form-control" style="margin-top: 5px" />
+
+        	<strong>Query Prefix </strong> 
+       		 <input type="text" class="form-control" style="margin-top: 5px" />
+			<strong>Query Suffix </strong> 
+        	<input type="text"  class="form-control" style="margin-top: 5px" />
+			<strong>Query Metadata  </strong> 
+        	<input type="text" class="form-control" style="margin-top: 5px" />
+        
+        <button type="button" class="btn btn-primary" style="margin-top: 5px">Save</button>
+        
+    </div>
+
+</div>
+    </div>
+
+
+</div>
+
