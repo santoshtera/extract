@@ -7,5 +7,5 @@
 
 ##Day 2 ---
 
-1. Update -- nested.js and nest.html in /static/nested folder. 
-2. 
+1. Update -- nested.js and nest.html in /static/nested folder.  Take update of these two files.
+2. Done only to add rows to table, we will look into trash thing tomorrow. 
