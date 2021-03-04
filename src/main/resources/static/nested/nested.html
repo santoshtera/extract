@@ -14,7 +14,7 @@
 <script type="text/ng-template" id="item.html">
     <div class="item">{{item.name}}</div>
 </script>
-<div class="col-md-10">
+<div class="">
     <div class="row">
         <div class="col-md-4">
              <div class="toolbox box box-grey box-padding">
@@ -38,31 +38,75 @@
         </div>
         <div class="col-md-4">
 
-  		<div ng-if="models.selected" class="box box-grey box-padding">
+  		<form ng-if="models.selected" class="box box-grey box-padding" ng-submit="saveForLater(formItem)">
         	<h3>{{models.selected.name}}</h3>
        		<strong>Step Name </strong> {{models.selected.name}}
-        	<input type="text" ng-model="models.selected.name" class="form-control" style="margin-top: 5px" />
+        	<input type="text" ng-model="formItem.stepName = models.selected.name" class="form-control" style="margin-top: 5px" />
+        	<input ng-show="false" type="text" ng-model="formItem.id = models.selected.id" class="form-control" style="margin-top: 5px" />
         
        	    <strong>Query </strong>
-            <input type="text"  class="form-control" style="margin-top: 5px" />
+            <input type="text" ng-model="formItem.query"  class="form-control" style="margin-top: 5px" />
 
         	<strong>Query Parameters </strong> 
-        	<input type="text"  class="form-control" style="margin-top: 5px" />
+        	<input type="text" ng-model="formItem.parameters" class="form-control" style="margin-top: 5px" />
 
         	<strong>Query Prefix </strong> 
-       		 <input type="text" class="form-control" style="margin-top: 5px" />
+       		 <input type="text" ng-model="formItem.prefix" class="form-control" style="margin-top: 5px" />
 			<strong>Query Suffix </strong> 
-        	<input type="text"  class="form-control" style="margin-top: 5px" />
+        	<input type="text" ng-model="formItem.suffix" class="form-control" style="margin-top: 5px" />
 			<strong>Query Metadata  </strong> 
-        	<input type="text" class="form-control" style="margin-top: 5px" />
+        	<input type="text" ng-model="formItem.metadata" class="form-control" style="margin-top: 5px" />
         
-        <button type="button" class="btn btn-primary" style="margin-top: 5px">Save</button>
-        
-    </div>
-
+        <button type="submit" class="btn btn-primary" style="margin-top: 5px">Save for Later</button>        
+   	 </form>
+	</div>
+ </div>
 </div>
-    </div>
-
-
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive">
+  			<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Step Name</th>
+      <th scope="col">Query Parameters</th>
+      <th scope="col">Query Prefix</th>
+      <th scope="col">Query Suffix</th>
+      <th scope="col">Query Metadata</th>
+    </tr>
+  </thead>
+  
+  <tbody ng-repeat=" item in tableItem">
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.stepName}}</td>
+      <td>{{item.parameters}}</td>
+      <td>{{item.prefix}}</td>
+      <td>{{item.suffix}}</td>
+      <td>{{item.metadata}}</td>
+    </tr>
+  
+  </tbody>
+  
+  <!--  <tbody ng-repeat="(k,v) in models.dropzones">
+    <tr ng-repeat = "item in v">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.parameters}}</td>
+      <td>{{item.parameters}}</td>
+      
+      
+    </tr> 
+  
+  </tbody> -->
+</table>
 </div>
-
+	
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4 col-md-offset-md-8">
+		<button type="submit" class="btn btn-primary"> Submit </button>
+	</div>
+</div>
