@@ -49,16 +49,49 @@
         <h3>{{models.selected.name}}</h3>
          
          <div class="form-group row">
+        <label for="extractName" class="col-sm-6 col-form-label" style="margin-top: 10px">Extract Name</label>
+        <div class="col-sm-6">
+          <input type="text"  class="form-control" ng-model="formItem.extractName" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="spName" class="col-sm-6 col-form-label" style="margin-top: 10px">Store Procedure</label>
+        <div class="col-sm-6">
+          <input type="text"  class="form-control" ng-model="formItem.spName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputData" class="col-sm-6 col-form-label" style="margin-top: 10px">Input Data</label>
+        <div class="col-sm-6">
+          <input type="text"  class="form-control" ng-model="formItem.inputData">
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="outputData" class="col-sm-6 col-form-label" style="margin-top: 10px">Output Data</label>
+        <div class="col-sm-6">
+          <input type="text"  class="form-control" ng-model="formItem.outputData">
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="stepType" class="col-sm-6 col-form-label" style="margin-top: 10px">Step Type</label>
+        <div class="col-sm-6">
+          <input type="text"  class="form-control" ng-model="formItem.stepType">
+        </div>
+      </div>
+      
+         <div class="form-group row">
         <label for="stepName" class="col-sm-6 col-form-label" style="margin-top: 10px">Step Name</label>
         <div class="col-sm-6">
-          <input type="text"  class="form-control" ng-model="formItem.stepName = models.selected.name">
+          <input type="text"  class="form-control" ng-model="formItem.stepName = models.selected.name" disabled>
         </div>
       </div>
       
       <div class="form-group row">
         <label for="stepName" class="col-sm-6 col-form-label" style="margin-top: 10px">Step Order</label>
         <div class="col-sm-6">
-          <input type="text"  class="form-control" ng-model="formItem.stepOrder">
+          <input type="number"  class="form-control" ng-model="formItem.stepOrder" required >
         </div>
       </div>
           <input ng-show="false" type="text" ng-model="formItem.id = models.selected.id" class="form-control" style="margin-top: 5px" />
@@ -89,8 +122,13 @@
       <table class="table">
 <thead>
   <tr>
-    <th scope="col">#</th>
+    <th scope="col">Extract Name</th>
+    <th scope="col">Store Procedure</th>
+    <th scope="col">Input Data</th>
+    <th scope="col">Output Data</th>
+    <th scope="col">Step Type</th>
     <th scope="col">Step Name</th>
+    <th scope="col">Step Order</th>
     <th scope="col">Query Parameters</th>
     <th scope="col">Query Prefix</th>
     <th scope="col">Query Suffix</th>
@@ -100,8 +138,13 @@
 
 <tbody ng-repeat=" item in tableItem">
   <tr>
-    <td>{{item.id}}</td>
+    <td>{{item.extractName}}</td>
+    <td>{{item.spName}}</td>
+    <td>{{item.inputData}}</td>
+    <td>{{item.outData}}</td>
+    <td>{{item.stepType}}</td>
     <td>{{item.stepName}}</td>
+    <td>{{item.stepOrder}}</td>
     <td>{{item.parameters}}</td>
     <td>{{item.prefix}}</td>
     <td>{{item.suffix}}</td>
@@ -128,7 +171,7 @@
 </div>
 <div class="row">
 <div class="col-md-4 col-md-offset-md-8">
-  <button type="submit" class="btn btn-primary"> Submit </button>
+  <button type="submit" class="btn btn-primary" ng-click="submit();"> Submit </button>
 </div>
 </div>
 

@@ -1,7 +1,7 @@
 /**
  * The controller doesn't do much more than setting the initial data model
  */
-angular.module("demo").controller("NestedListsDemoController", function($scope) {
+angular.module("demo").controller("NestedListsDemoController", function($scope,$http) {
 
 	$scope.tableItem = [];
     $scope.models = {
@@ -42,9 +42,27 @@ angular.module("demo").controller("NestedListsDemoController", function($scope) 
     $scope.saveForLater = function(formItem){
     	console.log(formItem);
     	$scope.tableItem.push(angular.copy(formItem));
+    	
     	this.formItem = '';
     	
     }
+    
+    
+    var formData = {
+  		itemsInfo: $scope.tableItem
+    };
+    
+    $scope.submit = function () {
+  	  
+  	  $http.post("/workOrderDetails", formData).
+        success(function (response) {
+      	  $scope.response = response;
+      	  console.log($scope.response);
+        }).
+        error(function () {
+            alert("Submit Form failed, please try again");
+        });
+    };
     $scope.$watch('models.dropzones', function(model) {
         $scope.modelAsJson = angular.toJson(model, true);
     }, true);
