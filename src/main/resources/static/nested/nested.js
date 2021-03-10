@@ -50,24 +50,36 @@ angular.module("demo").controller("NestedListsDemoController", function($scope,$
         });
     };
     
-    // var findItemById = function(items, itemId) {
-     //   return _.find(items, function(item) {
-     //     return item.itemId === itemId;
-    //    });
-   //   };
-  /**  $scope.getValuesFromTable = function (item) {
-    	$scope.models.dropzones = _.findItemById(item, item.id, function(itemid){
-  			if(itemid.isPresent()){
-  			
-  				return item;
-  			}
-  			
-  			else item = [];
-  		}
-    }); **/
+    var findItemById = function(items, itemId) {
+        return _.find(items, function(item) {
+          return item.id === itemId;
+        });
+      };
     
-    $scope.$watch('models.dropzones', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-    }, true);
+      
+   $scope.getValuesFromTable = function (item) {
+	   console.log(item);
+
+	   var found = findItemById($scope.tableItem, item.id);
+	    if (found) {
+	    	console.log("in find  found" + found);
+	    	
+	    	this.formItem = angular.copy(found);
+	    	$scope.foundItem = found;
+
+	    	console.log("Present FormItem" + this.formItem);
+
+	    	
+	    }
+	    else {
+	    	console.log("in find  Not found");
+	    	$scope.foundItem = '';
+	    	}
+	    
+    }; 
+    
+    $scope.$watch($scope.formItem, function() {
+        console.log("Watching formItem Change" + $scope.formItem)
+    });
 
 });

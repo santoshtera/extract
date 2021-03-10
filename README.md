@@ -16,3 +16,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0underscore.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
   2. update nest.hmtl, next.js
+
+ ## Day 4 --
+ 1. Include above two js files in home.jsp
+ 2. Take update if nested.js
+ 3. include "Found Item {{foundItem}}" some where in nested.html to see the data.
