@@ -29,23 +29,48 @@ angular.module("demo").controller("NestedListsDemoController", function($scope,$
     	$scope.tableItem.push(angular.copy(formItem));
     	this.formItem = '';
     }
-    
-    var formData = {
-  		itemsInfo: $scope.tableItem	
-    };
+
+    $scope.open = function () {
+
+        var modalInstance = $modal.open({
+          templateUrl: 'modalTemplate.html',
+          controller: 'ModalController',
+          resolve: {
+              msg: function () {
+                return $scope.msg;
+              }
+          }
+         
+        });
+  
+        modalInstance.result.then(function () {
+            $log.info('Modal Okay');
+            $scope.msg = '';
+        }, function () {
+          $log.info('Modal dismissed ');
+          $scope.msg = '';
+        });
+      };
     
     $scope.submit = function () {
-  	  
+       
+        var formData = {
+        itemsInfo: $scope.tableItem	
+         };
+  
   	  $http.post("/workOrderDetails", formData).
         success(function (response) {
       	  $scope.response = response;
       //	this.response.formData.itemsInfo = [];
-      	  console.log($scope.response);
+            console.log($scope.response);
+            $scope.msg = "Successfull Update";
+      	  $scope.open();
       	  
         }).
         error(function () {
         	// $formData.itemsInfo = [];
-            alert("Submit Form failed, please try again");
+            $scope.msg = "Please Try again";
+            $scope.open();
            
         });
     };
@@ -82,4 +107,18 @@ angular.module("demo").controller("NestedListsDemoController", function($scope,$
         console.log("Watching formItem Change" + $scope.formItem)
     });
 
+});
+
+angular.module('demo').controller('ModalController', function ($scope, $modalInstance,msg) {
+	
+	
+	$scope.message = msg;
+  $scope.ok = function () {
+	  
+    $modalInstance.close();
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 });

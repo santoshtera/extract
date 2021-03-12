@@ -16,6 +16,18 @@
 <div class="item">{{item.id}}</div>
 </script>
 
+<script type="text/ng-template" id="modalTemplate.html">
+  <div class="modal-header">
+
+  </div>
+  <div class="modal-body">
+            <h3 class="modal-title">{{message}}</h3>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok();">OK</button>
+      <button class="btn btn-warning" ng-click="cancel();">Cancel</button>
+  </div>
+</script>
 <!-- Just an image -->
 <nav class="navbar navbar-light bg-light" style="background: #0085cf;height:90px">
 
